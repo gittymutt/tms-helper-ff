@@ -1,14 +1,8 @@
-
-console.log('ran script.js');
-
-
-
 function listenForClicks() {
 
   document.addEventListener("click", (e) => {
 
     function makePresent(tabs) {
-      console.log("made present");
         browser.tabs.sendMessage(tabs[0].id, {
           command: "makePresent"
         });
@@ -16,16 +10,14 @@ function listenForClicks() {
 
     function campusAssign(tabs) {
         browser.tabs.sendMessage(tabs[0].id, {
-          command: "campusAssign",
+          command: "campusAssign"
         });
     }
 
     function fillIn(tabs) {
-      console.log("textare has in it:" + document.getElementsByClassName('textarea')[0].value);
-        browser.tabs.sendMessage(tabs[0].id, {
+          browser.tabs.sendMessage(tabs[0].id, {
           command: "fillIn",
           textBoxContent: document.getElementsByClassName('textarea')[0].value
-
         });
     }
 
