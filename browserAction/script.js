@@ -1,9 +1,10 @@
 
-var document.txtboxMsg;
+console.log('ran script.js');
+
+
 
 function listenForClicks() {
-  document.getElementsByClassName('textarea')[0].value = txtboxMsg;
-  console.log("testxmesage: " + txtboxMsg);
+
   document.addEventListener("click", (e) => {
 
     function makePresent(tabs) {
@@ -20,11 +21,17 @@ function listenForClicks() {
     }
 
     function fillIn(tabs) {
-        document.txtboxMsg = document.getElementsByClassName('textarea')[0].value;
-
+      console.log("textare has in it:" + document.getElementsByClassName('textarea')[0].value);
         browser.tabs.sendMessage(tabs[0].id, {
           command: "fillIn",
-          message: document.txtboxMsg
+          textBoxContent: document.getElementsByClassName('textarea')[0].value
+
+        });
+    }
+
+    function enableSelect(tabs) {
+        browser.tabs.sendMessage(tabs[0].id, {
+          command: "enableSelect"
         });
     }
 
@@ -46,6 +53,11 @@ function listenForClicks() {
     else if (e.target.classList.contains("fill-in")) {
       browser.tabs.query({active: true, currentWindow: true})
         .then(fillIn)
+        .catch(reportError);
+    }
+    else if (e.target.classList.contains("enable-select")) {
+      browser.tabs.query({active: true, currentWindow: true})
+        .then(enableSelect)
         .catch(reportError);
     }
   });
