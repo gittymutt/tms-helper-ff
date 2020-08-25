@@ -27,6 +27,12 @@ function listenForClicks() {
         });
     }
 
+    function helpBox(tabs) {
+        browser.tabs.sendMessage(tabs[0].id, {
+          command: "helpBox"
+        });
+    }
+
     function reportError(error) {
       console.error(`Could not do it: ${error}`);
     }
@@ -51,6 +57,24 @@ function listenForClicks() {
       browser.tabs.query({active: true, currentWindow: true})
         .then(enableSelect)
         .catch(reportError);
+    }
+    else if (e.target.classList.contains("help-box")) {
+
+      var creating = browser.windows.create(
+        { width: 200,
+          height: 600,
+          left: 500,
+          top: 100,
+          url: "help.html"
+        }
+      );
+
+
+      /*
+      browser.tabs.query({active: true, currentWindow: true})
+        .then(helpBox)
+        .catch(reportError);
+        */
     }
   });
 }

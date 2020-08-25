@@ -29,7 +29,6 @@ const shadeColor = 'lightblue';
         txtAreaCollection[i].style.borderWidth = 'medium';
         txtAreaCollection[i].style.borderStyle = 'dotted';
       }
-
       for (let i = 0;i<txtAreaCollection.length;i++) {txtAreaCollection[i].addEventListener("click",
       function (e) {
         if (e.target.style.backgroundColor != shadeColor)
@@ -38,6 +37,14 @@ const shadeColor = 'lightblue';
         }
       )};
     }
+    else if (message.command ==="helpBox") {
+      console.log("help box clicked");
+      var creating = browser.windows.create(
+  
+)
+    }
+
+
   }
 
 browser.runtime.onMessage.addListener(doStuff);
